@@ -23,4 +23,12 @@ while opcion not in ("1","2"):
     print("opcion equivocada, pofavor ingrese una opcion valida...")
     opcion = input("pulse cualquier tecla para continuar: ")
     menu()
-print ("good boy")
+
+if opcion == "1":
+    cantidad = int (input("cuantos desea pedir: "))
+    while cantidad > int(herramientas["martillo"]["stock"])or cantidad == 0  :
+        print ("error seleccione una cantidad valida")
+        input ("presione cualquier tecla para continuar")
+        
+
+
