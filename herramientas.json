@@ -1,0 +1,17 @@
+
+{
+    "martillo" : {
+    "estado" : "activo",
+    "id" : "mart001",
+    "propietario": "juan david osorio lora",
+    "prestado a" : "",
+    "stock" : 2
+},
+    "destornillador" : {
+        "estado" : "inactivo",
+        "id" : "des002",
+        "propietario": "juan david osorio lora",
+        "prestado a" : "",
+        "stock" : 3
+    }
+}
