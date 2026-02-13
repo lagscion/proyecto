@@ -24,6 +24,14 @@ que deseas pedir?
 
 
 """)
+
+def maxim_id():
+    if len(peticiones) == 0:
+        max_id = 1
+    else: 
+        max_id = len(peticiones)+1
+    return max_id
+
 def peticion (id_usuario):
     menu()
     opcion = input("opcion: ")
@@ -41,16 +49,15 @@ def peticion (id_usuario):
             menu()
             cantidad = int (input("\ncuantos desea pedir: "))
         who = vecinos[id_usuario]["nombre"]
-        vecinos_list = [vecinos[i]["nombre"] for i in vecinos]
-        while who not in vecinos_list:
-            print("no hay algun usuario con este nombre")
-            input("presione cualquier tecla para continuar")
-            who = input("\na nombre de quien es la peticion: ")
-
+        fecha = input ("cuantos dias se demoraria en retornar la herramienta: ")
+        maxim_id()
         peticiones ["martillo"] = {
-            "id del usuario" : (vecinos[id_usuario]["nombre"]),
+            "id del pedido" : (maxim_id()),
+            "quien" : (who),
+            "herramienta" : "destornillador",
             "cantidad" : (cantidad),
-            "quien" : (who)
+            "fecha" : (fecha),
+            "estado" : ""
         }
         with open("peticiones.json", "w") as archivo_pet:
             json.dump(peticiones, archivo_pet, indent=4)
@@ -64,15 +71,15 @@ def peticion (id_usuario):
             menu()
             cantidad = int (input("\ncuantos desea pedir: "))
         who = vecinos[id_usuario]["nombre"]
-        vecinos_list = [vecinos[i]["nombre"] for i in vecinos]
-        while who not in vecinos_list:
-            print("no hay algun usuario con este nombre")
-            input("presione cualquier tecla para continuar")
-            who = input("\na nombre de quien es la peticion: ").lower()
-
+        fecha = input ("cuantos dias se demoraria en retornar la herramienta: ")
+        maxim_id()
         peticiones ["destornillador"] = {
+            "id del pedido" : (maxim_id()),
+            "quien" : (who),
+            "herramienta" : "destornillador",
             "cantidad" : (cantidad),
-            "quien" : (who)
+            "fecha" : (fecha),
+            "estado" : ""
         }
         with open("peticiones.json", "w") as archivo_pet:
             json.dump(peticiones, archivo_pet, indent=4)

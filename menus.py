@@ -2,22 +2,26 @@ import json
 import peticiones
 with open ("herramientas.json", "r") as archivo:
     herramientas = json.load(archivo)
+with open ("vecinos.json", "r") as archivo:
+    vecinos = json.load(archivo)
 
-def print_menu_norm():
-    print("""\n *** BIENVENIDO ***
+def print_menu_norm(id_usuario):
+    print(f"""\n *** BIENVENID@ {(vecinos[id_usuario]["nombre"]).upper()} ***
             
 Que desea?
             
 1. consultar el estado de las herramienta
             
 2. solicitud de herramienta
+            
+3. salir
 
 """)
 
 
 
 def menu_norm (id_usuario):
-    print_menu_norm()
+    print_menu_norm(id_usuario)
 
     while True:
         try:
@@ -25,23 +29,27 @@ def menu_norm (id_usuario):
             if opcion == 1:
                 estado = {herramientas[i]["nombre"]:herramientas[i]["estado"] for i in herramientas}
                 print ("\n",estado)
-                print_menu_norm()
+                print_menu_norm(id_usuario)
             elif opcion ==2:
                 peticiones.peticion(id_usuario)
+                print_menu_norm (id_usuario)
+            elif opcion ==3:
+                break
             else:
                 print("\ningrese una opcion valida")
                 input("\npresione cualquier tecla para continuar...")
                 menu_norm(id_usuario)
+            
 
         except ValueError:
             print("ingrese una opcion valida")
             input("presione cualquier tecla para continuar...")
-            print_menu_norm()
+            print_menu_norm(id_usuario)
 
 ############################################################################################################################################################################
 
 def menu_admin(id_usuario):
-    print_menu_admin()
+    print_menu_admin(id_usuario)
     while True:
         try:
             opcion = int(input("\nopcion : "))
@@ -60,21 +68,22 @@ def menu_admin(id_usuario):
             else:
                 print("\ningrese una opcion valida")
                 input("\npresione cualquier tecla para continuar...")
-                menu_norm(id_usuario)
+                print_menu_admin(id_usuario)
 
         except ValueError:
             print("ingrese una opcion valida")
             input("presione cualquier tecla para continuar...")
-            menu_norm()
+            print_menu_admin(id_usuario)
 
 
 
 
-def print_menu_admin():
-    print("""\n *** BIENVENIDO ***
+def print_menu_admin(id_usuario):
+    print(f"""\n *** BIENVENID@ {(vecinos[id_usuario]["nombre"]).upper()} ***
+
 Que desea?
 
-1.Crear usuario
+1. Crear usuario
 
 2. Listar usuarios
 
@@ -84,4 +93,4 @@ Que desea?
 
 5. Eliminar o inactivar usuario
 
-opcion : """)
+""")

@@ -13,6 +13,6 @@
     "id" : "2",
     "telefono" : "1234567",
     "direccion" :"carr 2",
-    "admin" : false
+    "admin" : true
 }
 }

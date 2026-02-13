@@ -1,6 +1,10 @@
 {
     "destornillador": {
-        "cantidad": 1,
-        "quien": "maria angela de las cruces"
+        "id del pedido": 1,
+        "quien": "juan david osorio lora",
+        "herramienta": "destornillador",
+        "cantidad": 3,
+        "fecha": "4500",
+        "estado": ""
     }
 }
