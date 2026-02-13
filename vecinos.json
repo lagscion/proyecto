@@ -1,5 +1,5 @@
 {
-    "usuario1":{
+    "1":{
     "nombre" : "juan david osorio lora",
     "id" : "1",
     "telefono" : "12345",
@@ -8,11 +8,11 @@
 
 },
 
-"usuario2" : {
+"2" : {
     "nombre" : "maria angela de las cruces",
     "id" : "2",
     "telefono" : "1234567",
     "direccion" :"carr 2",
-    "admin" : true
+    "admin" : false
 }
 }

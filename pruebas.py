@@ -1,12 +1,37 @@
 import json
+import menus
 
-with open ("herramientas.json", "r") as archivo:
-    herramientas = json.load(archivo)
+with open("vecinos.json", "r") as archivo:
+    vecinos = json.load(archivo)
 
-# herramienta = []
-# for claves in herramientas:
-#     herramienta.append(claves)
 
-estado = {i: herramientas[i]["estado"] for i in herramientas}
+def menuID():
+    print("*** HOLA ***\n")
 
-print (estado)
+
+def loggin():
+
+    ids_val = [vecinos[i]["id"] for i in vecinos]
+
+    menuID()
+    id_usuario = input("Ingrese su id: ")
+
+    while id_usuario not in ids_val:
+        print("Error. Digite un id válido.")
+        menuID()
+        id_usuario = input("Ingrese su id: ")
+
+    id_relacion = {
+        vecinos[i]["id"]: vecinos[i]["admin"]
+        for i in vecinos
+    }
+
+    permisos = id_relacion[id_usuario]
+
+    if permisos:
+        menus.menu_admin(id_usuario)
+    else:
+        menus.menu_norm(id_usuario)
+    return id_usuario
+
+loggin()

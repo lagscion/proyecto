@@ -1,4 +1,5 @@
 import json
+import peticiones
 with open ("herramientas.json", "r") as archivo:
     herramientas = json.load(archivo)
 
@@ -15,22 +16,22 @@ Que desea?
 
 
 
-def menu_norm ():
+def menu_norm (id_usuario):
     print_menu_norm()
 
     while True:
         try:
             opcion = int(input("\nopcion : "))
             if opcion == 1:
-                estado = {i: herramientas[i]["estado"] for i in herramientas}
+                estado = {herramientas[i]["nombre"]:herramientas[i]["estado"] for i in herramientas}
                 print ("\n",estado)
                 print_menu_norm()
             elif opcion ==2:
-                print("talvez")
+                peticiones.peticion(id_usuario)
             else:
                 print("\ningrese una opcion valida")
                 input("\npresione cualquier tecla para continuar...")
-                menu_norm()
+                menu_norm(id_usuario)
 
         except ValueError:
             print("ingrese una opcion valida")
@@ -39,7 +40,7 @@ def menu_norm ():
 
 ############################################################################################################################################################################
 
-def menu_admin():
+def menu_admin(id_usuario):
     print_menu_admin()
     while True:
         try:
@@ -59,7 +60,7 @@ def menu_admin():
             else:
                 print("\ningrese una opcion valida")
                 input("\npresione cualquier tecla para continuar...")
-                menu_norm()
+                menu_norm(id_usuario)
 
         except ValueError:
             print("ingrese una opcion valida")

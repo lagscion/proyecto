@@ -15,26 +15,21 @@ def  loggin():
     ids_val = [vecinos[i]["id"] for i in vecinos]
 
     menuID()
-    id = input ("Ingrese su id :")
+    id_usuario = input ("Ingrese su id :")
 
-    while id not  in ids_val:
+    while id_usuario not  in ids_val:
         print ("error")
         print("digite un id valido")
         menuID()
-        id = input("")
+        id_usuario = input("")
     
     id_relacion = {vecinos  [i]["id"] : vecinos[i]["admin"]for i in vecinos}
-    permisos = (id_relacion[id])
+    permisos = (id_relacion[id_usuario])
     if permisos :
-        menus.menu_admin()
+        menus.menu_admin(id_usuario)
     else:
-        menus.menu_norm()
-    
+        menus.menu_norm(id_usuario)
+
+    return id_usuario
 
 
-
-
-
-
-
-loggin()

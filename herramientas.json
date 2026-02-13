@@ -1,17 +1,17 @@
 
 {
-    "martillo" : {
-    "estado" : "activo",
-    "id" : "mart001",
-    "propietario": "juan david osorio lora",
-    "prestado a" : "",
-    "stock" : 2
-},
-    "destornillador" : {
-        "estado" : "inactivo",
-        "id" : "des002",
-        "propietario": "juan david osorio lora",
-        "prestado a" : "",
-        "stock" : 3
+    "1": {
+        "nombre": "martillo",
+        "estado": "activo",
+        "categoria": "construccion",
+        "stock": 2,
+        "valor_estimado": 1000
+    },
+    "2": {
+        "nombre": "destornillador",
+        "estado": "activo",
+        "categoria": "construccion",
+        "stock": 3,
+        "valor_estimado": 2000
     }
 }
