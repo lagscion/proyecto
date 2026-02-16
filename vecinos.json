@@ -1,18 +1,27 @@
 {
-    "1":{
-    "nombre" : "juan david osorio lora",
-    "id" : "1",
-    "telefono" : "12345",
-    "direccion" : "carr 1",
-    "admin" : false 
-
-},
-
-"2" : {
-    "nombre" : "maria angela de las cruces",
-    "id" : "2",
-    "telefono" : "1234567",
-    "direccion" :"carr 2",
-    "admin" : true
-}
+    "1": {
+        "nombre": "juan david osorio lora",
+        "id": "1",
+        "telefono": "12345",
+        "direccion": "carr 1",
+        "admin": false,
+        "prestamo": {
+            "2": {
+                "id del pedido": "2",
+                "quien": "1",
+                "herramienta": "destornillador",
+                "cantidad": 1,
+                "fecha": 12,
+                "estado": "inactivo"
+            }
+        }
+    },
+    "2": {
+        "nombre": "maria angela de las cruces",
+        "id": "2",
+        "telefono": "1234567",
+        "direccion": "carr 2",
+        "admin": true,
+        "prestamo": {}
+    }
 }

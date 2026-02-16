@@ -1,10 +1,10 @@
 {
-    "destornillador": {
-        "id del pedido": 1,
-        "quien": "juan david osorio lora",
-        "herramienta": "destornillador",
-        "cantidad": 3,
-        "fecha": "4500",
+    "1": {
+        "id del pedido": "1",
+        "quien": "1",
+        "herramienta": "maza",
+        "cantidad": 1,
+        "fecha": 12,
         "estado": ""
     }
 }
