@@ -11,7 +11,7 @@
         "nombre": "destornillador",
         "estado": "activo",
         "categoria": "construccion",
-        "stock": 3,
+        "stock": 1,
         "valor": 2000,
         "id": "2"
     },

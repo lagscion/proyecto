@@ -12,16 +12,41 @@
                 "herramienta": "destornillador",
                 "cantidad": 1,
                 "fecha": 12,
-                "estado": "inactivo"
+                "estado": "activo"
+            },
+            "3" : {
+                "id del pedido": "3",
+                "quien": "1",
+                "herramienta": "martillo",
+                "cantidad": 3,
+                "fecha": 12,
+                "estado": "activo"
             }
         }
     },
     "2": {
+        "nombre": "elsa pato",
+        "id": "2",
+        "telefono": "3",
+        "direccion": "carr 0",
+        "admin": false,
+        "prestamo": {
+            "3": {
+                "id del pedido": "3",
+                "quien": "2",
+                "herramienta": "destornillador",
+                "cantidad": 1,
+                "fecha": 12,
+                "estado": "activo"
+            }
+        }
+    },
+    "3": {
         "nombre": "maria angela de las cruces",
         "id": "2",
         "telefono": "1234567",
         "direccion": "carr 2",
         "admin": true,
-        "prestamo": {}
+        "prestamo" : {}
     }
 }

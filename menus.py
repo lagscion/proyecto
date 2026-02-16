@@ -8,6 +8,7 @@ import loggin
 import eliminar_usuario
 import gestion_herramientas
 import devoluciones
+import reportes_info
 
 with open("peticiones.json", "r") as arch_pet:
     peticiones_data = json.load(arch_pet)
@@ -92,7 +93,7 @@ def menu_admin(id_usuario, vecinos, herramientas, peticiones_data):
             elif opcion == 7:
                 peticiones_module.aprovacion_prestamo(peticiones_data, vecinos)
             elif opcion == 8:
-                pass
+                reportes_info.menu(herramientas, vecinos)
             elif opcion == 9:
                 loggin.loggin(vecinos, herramientas)
             else:
@@ -129,7 +130,7 @@ Que desea?
 
 7. solicitudes
 
-8. salir
+8. reportes o informacion
 
 9. salir
 """)
