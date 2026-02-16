@@ -92,6 +92,8 @@ def menu_admin(id_usuario, vecinos, herramientas, peticiones_data):
             elif opcion == 7:
                 peticiones_module.aprovacion_prestamo(peticiones_data, vecinos)
             elif opcion == 8:
+                pass
+            elif opcion == 9:
                 loggin.loggin(vecinos, herramientas)
             else:
                 print("\ningrese una opcion valida")
@@ -129,4 +131,5 @@ Que desea?
 
 8. salir
 
+9. salir
 """)
