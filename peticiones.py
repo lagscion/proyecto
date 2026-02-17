@@ -1,5 +1,6 @@
 
 import json
+import logs
 with open ("peticiones.json", "r") as arch_pet:
     peticiones = json.load(arch_pet)
 with open ("herramientas.json", "r") as archivo_herr:
@@ -38,16 +39,22 @@ def peticion (id_usuario, herramientas):
         opcion = (input("ID de la herramienta a presar: "))
 
         while int(opcion) < 1 or len(herramientas) < int(opcion) :
+            mensaje = "se ingreso una opcion diferente a un numero o un numero fuera del rango de herramientas en el menu de solicitud de herramienta"
+            logs.registrar_evento(mensaje)
             print("opcion equivocada, pofavor ingrese una opcion valida...")
             input("pulse cualquier tecla para continuar: ")
             opcion = input("ID de la herramienta a presar: ")
         while opcion not in herramientas:
+            mensaje = "se ingreso una opcion diferente a un numero o un numero fuera del rango de herramientas en el menu de solicitud de herramienta"
+            logs.registrar_evento(mensaje)
             print("opcion equivocada, pofavor ingrese una opcion valida...")
             input("pulse cualquier tecla para continuar: ")
             opcion = input("ID de la herramienta a presar: ")
 
         cantidad = int(input("ingrese la cantidad de herramientas a  prestar: "))
         while cantidad > herramientas[opcion]["stock"] or cantidad < 1:
+            mensaje = "se ingreso una cantidad invalida  en el menu de solicitud de herramienta"
+            logs.registrar_evento(mensaje)
             print("cantidad invalida, porfavor ingrese una cantidad valida ...")
             input("pulse cualquier tecla para continuar: ")
             cantidad = int(input("ingrese la cantidad de herramientas a  prestar: "))
@@ -59,6 +66,8 @@ def peticion (id_usuario, herramientas):
                 fecha = int(input("ingrese el numero aprox dias en los que devolveria la herramienta: "))
                 break
             except ValueError:
+                mensaje = "se ingreso un valor diferente a un numero en el menu de solicitud de herramienta"
+                logs.registrar_evento(mensaje)
                 print("ingrese un valor valido")
             
 
@@ -79,6 +88,9 @@ def peticion (id_usuario, herramientas):
         with open ("herramientas.json", "r") as archivo_herr:
             herramientas = json.load(archivo_herr)
 
+        mensaje = f"se realizo una solicitud de herramienta{herramienta} por parte del usuario {vecinos[id_usuario]['nombre']} con id {id_usuario}"
+        logs.registrar_evento(mensaje)
+
         break
 
 #APROVACIONES=================================================================================================================================================
@@ -92,6 +104,8 @@ def aprovar(peticiones, vecinos, herramientas):
 
     id_apro = input ("ingrese el ID del pedido que quisiera  aprovar: ")
     while id_apro not in peticiones:
+        mensaje = "se ingreso una opcion diferente a un numero o un numero fuera del rango de pedidos en el menu de aprovacion de peticiones"
+        logs.registrar_evento(mensaje)
         print ("\nID invalido, profavor ingrese un ID valido")
         id_apro = input("Ingrese el ID del pedido que quiere aprobar: ")
 
@@ -110,10 +124,14 @@ def aprovar(peticiones, vecinos, herramientas):
             break
 
     if id_herramienta is None:
+        mensaje = "se intento aprobar un pedido con una herramienta que no existe en el menu de aprovacion de peticiones"
+        logs.registrar_evento(mensaje)
         print("Error: herramienta no encontrada")
         return
 
     if herramientas[id_herramienta]["stock"] < cantidad:
+        mensaje = "se intento aprobar un pedido con una cantidad mayor al stock disponible en el menu de aprovacion de peticiones"
+        logs.registrar_evento(mensaje)
         print("No hay suficiente stock")
         return
 
@@ -122,6 +140,8 @@ def aprovar(peticiones, vecinos, herramientas):
     herramientas[id_herramienta]["stock"] -= cantidad
 
     if "prestamo" not in vecinos[id_usuario]:
+        mensaje = "se intento aprobar un pedido para un usuario que no tiene prestamos registrados en el menu de aprovacion de peticiones"
+        logs.registrar_evento(mensaje)
         vecinos[id_usuario]["prestamo"] = {}
 
     vecinos[id_usuario]["prestamo"][id_apro] = pedido
@@ -150,6 +170,8 @@ def denegar (peticiones):
     id_ped = input ("ingrese el id de el pedido que quiere denegar: ")
 
     while id_ped not in peticiones:
+        mensaje = "se ingreso una opcion diferente a un numero o un numero fuera del rango de pedidos en el menu de denegacion de peticiones"
+        logs.registrar_evento(mensaje)
         print("ID invalido...")
         id_ped = input ("ingrese el id de el pedido que quiere denegar: ")
     print (f"""\nesta seguro que quiere eliminar el pedido de: 
@@ -163,6 +185,8 @@ estado: {peticiones[id_ped]["estado"]}""")
     opcion = input("\nY o N: ").upper()
     
     while opcion not in ["Y", "N"]:
+        mensaje = "se ingreso una opcion diferente a Y o N en el menu de denegacion de peticiones"
+        logs.registrar_evento(mensaje)
         print ("\nopcion equivocada...")
         opcion = input("Y o N: ").upper()
     
@@ -207,6 +231,8 @@ def aprovacion_prestamo(peticiones, vecinos):
     opcion = int(input("\nopcion: "))
 
     while opcion not in [1, 2, 3]:
+        mensaje = "se ingreso una opcion diferente a un numero o un numero fuera del rango de opciones en el menu de aprovacion de prestamos"
+        logs.registrar_evento(mensaje)
         print("\nopcion invalida, por favor ingrese una opcion valida")
         input("\npulse cualquier tecla para continuar")
         opcion = int(input("\nopcion: "))

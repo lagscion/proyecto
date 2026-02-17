@@ -1,4 +1,5 @@
 import json
+import logs
 with open ("herramientas.json", "r") as archivo:
     herramientas = json.load(archivo)
 with open ("vecinos.json", "r") as archivo:
@@ -38,6 +39,8 @@ def prestamos_activos(vecinos):
                 print("-" * 30)
 
     if not hay_activos:
+        mensaje = "se intento revisar si habia prestamos activos sin haber prestamos activos registrados en el menu de prestamos activos"
+        logs.registrar_evento(mensaje)
         print("No hay préstamos activos.")
 
 # HITORIA___________________________________________________________________________________________________________________________________________
@@ -50,6 +53,8 @@ def historial(vecinos):
     id_usuario = input("\nIngrese el ID del usuario a revisar: ")
 
     while id_usuario not in vecinos:
+        mensaje = "se ingreso un id inexistente en el menu de historial"
+        logs.registrar_evento(mensaje)
         print("ID erróneo, ingrese un ID válido.")
         id_usuario = input("\nIngrese el ID del usuario a revisar: ")
 
@@ -102,7 +107,7 @@ def mas_pedidas(vecinos):
         if herramientas.count(h) == max_solicitudes:
             print(f"{h} -> {max_solicitudes} solicitudes")
 
-#VECINO CON MAS HERRAMIENTAS SOLICITADAS
+#VECINO CON MAS HERRAMIENTAS SOLICITADAS_________________________________________________________
 
 def usuario_mas_solicitudes(vecinos, ):
     max_prestamos = 0
@@ -119,6 +124,8 @@ def usuario_mas_solicitudes(vecinos, ):
         print(f"Usuario: {usuario_top}")
         print(f"Cantidad de préstamos: {max_prestamos}")
     else:
+        mensaje = "se intento revisar quien es el usuario con mas solicitudes sin haber usuarios con prestamos registrados en el menu de usuario con mas solicitudes"
+        logs.registrar_evento(mensaje)   
         print("No hay usuarios con préstamos registrados.")
 #____________________________________________________________________________________________________________________________________________________________
 def menu(herramientas, vecinos):
@@ -143,10 +150,14 @@ def menu(herramientas, vecinos):
             try: 
                 opcion = int(input ("opcion: "))
                 while  opcion not in [1,2,3,4,5,6]:
+                    mensaje = "se ingreso una opcion diferente a un numero o un numero fuera del rango de opciones en el menu de reportes e informacion"
+                    logs.registrar_evento(mensaje)
                     print ("opcion equivocada...")
                     opcion = int(input ("opcion: "))
                 break
             except ValueError:
+                mensaje = "se ingreso una opcion diferente a un numero en el menu de reportes e informacion"
+                logs.registrar_evento(mensaje)
                 print(" opcion equivocada...")
 
         if opcion == 1:

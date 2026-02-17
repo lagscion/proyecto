@@ -9,7 +9,7 @@ import eliminar_usuario
 import gestion_herramientas
 import devoluciones
 import reportes_info
-
+import logs
 with open("peticiones.json", "r") as arch_pet:
     peticiones_data = json.load(arch_pet)
 with open ("herramientas.json", "r") as archivo:
@@ -61,6 +61,8 @@ def menu_norm(id_usuario, herramientas, vecinos, peticiones_data):
             
 
         except ValueError:
+            mensaje = "se ingreso una opcion diferente a un numero en el menu de usuario normal"
+            logs.registrar_evento(mensaje)
             print("ingrese una opcion valida")
             input("presione cualquier tecla para continuar...")
             print_menu_norm(id_usuario, vecinos)
@@ -97,11 +99,15 @@ def menu_admin(id_usuario, vecinos, herramientas, peticiones_data):
             elif opcion == 9:
                 loggin.loggin(vecinos, herramientas)
             else:
+                mensaje = "se intento ingresar una opcion invalida en el menu de administrador"
+                logs.registrar_evento(mensaje)
                 print("\ningrese una opcion valida")
                 input("\npresione cualquier tecla para continuar...")
                 print_menu_admin(id_usuario)
 
         except ValueError:
+            mensaje = "se ingreso una opcion diferente a un numero en el menu de administrador"
+            logs.registrar_evento(mensaje)
             print("ingrese una opcion valida")
             input("presione cualquier tecla para continuar...")
             print_menu_admin(id_usuario)

@@ -1,4 +1,5 @@
 import json
+import logs
 with open ("herramientas.json", "r") as archivo:
     herramientas = json.load(archivo)
 
@@ -23,6 +24,8 @@ def crear_herramientas(herramientas):
     nombre_h = input ("\nIngrese el nombre de la herramienta: ")
     nombres = [herramientas[i]["nombre"] for i in herramientas]
     while nombre_h in nombres:
+        mensaje = "se intento crear una herramienta existente"
+        logs.registrar_evento(mensaje)
         print("Ese nombre ya existe. No se puede registrar.")
         input("pulse cualquier letra para continuar")
         nombre_h = (input("\nIngrese el nombre de la herramienta:  "))
@@ -32,13 +35,17 @@ def crear_herramientas(herramientas):
         try:
             stock_h = int(input ("\nCuantas herramientas hay: "))
             break
-        except ValueError:
+        except ValueError:    
+            mensaje = "se intento ingresar un valor diferente a un numero en el menu de agregar herramienta"
+            logs.registrar_evento(mensaje)
             print("\nValor inválido...")
     while True:
         try:
             valor_h = int(input ("\nQue valor estimado tiene esa herramienta: "))
             break
         except ValueError:
+            mensaje = "se intento ingresar un valor diferente a un numero en el menu de agregar herramienta"
+            logs.registrar_evento(mensaje)
             print("\nValor inválido...")
 
     while True:
@@ -46,11 +53,15 @@ def crear_herramientas(herramientas):
             id_h = int(input("\nIngrese el id de la herramienta:  "))
             id_h = str(id_h)  
             while id_h in herramientas:
+                mensaje = "se intento ingresar un id existente en el menu de agregar herramienta"
+                logs.registrar_evento(mensaje)
                 print("Ese ID ya existe. No se puede registrar.")
                 input("pulse cualquier letra para continuar")
                 id_h = str(int(input("\nIngrese el id de la herramienta:  ")))
             break
         except ValueError:
+            mensaje = "se intento ingresar un valor diferente a un numero en el menu de agregar herramienta"
+            logs.registrar_evento(mensaje)
             print("\nValor inválido...")
 
 
@@ -88,6 +99,8 @@ def buscar (herramientas):
     print("ingrese el id de su herramienta")
     id_bus  = input("ID: ")
     while id_bus not in herramientas:
+        mensaje = "se intento buscar un id inexistente en el menu de buscar herramienta"
+        logs.registrar_evento(mensaje)
         print ("id inexistente...")
         input ("presione cualqier tecla para continuar...")
         print("ingrese el id de su herramienta")
@@ -119,6 +132,8 @@ def actualizar_her(herramientas):
     id_her = input ("ingrese el id de la herramienta que quiere actualizar: ")
     
     while id_her not in herramientas:
+        mensaje = "se intento acceder con un id inexistente en el menu de actualizar herramienta"  
+        logs.registrar_evento(mensaje)
         print("Ese ID no existe. No se puede acceder.")
         input("pulse cualquier tecla para continuar")
         id_her = (input("\n ingrese el id de la herramienta que quiere actualizar: "))
@@ -133,7 +148,8 @@ def actualizar_her(herramientas):
     opcion = int(input ("opcion: "))
 
     while opcion < 1 or opcion > 6:
-    
+        mensaje = "se intento poner una opcion equivocada en el menu de actualizar herramienta"
+        logs.registrar_evento(mensaje)
         print("\ningrese una opcion valida")
         input("\npresione cualquier tecla para continuar...")
         print("""\nque parametro quisiera cambiar? : 
@@ -188,6 +204,8 @@ def actualizar_her(herramientas):
         while True:
             nuevo_id = input("\nIngrese el nuevo ID de la herramienta: ")
             if nuevo_id in herramientas:
+                mensaje = "se intento ingresar un id existente en el menu de actualizar herramienta"
+                logs.registrar_evento(mensaje)
                 print("Ese ID ya existe. No se puede registrar.")
                 input("pulse cualquier letra para continuar")
             else:
@@ -205,11 +223,15 @@ def eliminar (herramientas):
     id_her = input("\ningrese  el id de la herramienta a eliminar: ")
 
     while id_her not in herramientas:
+        mensaje = "se intento acceder con un id inexistente en la funcion de eliminar herramienta"
+        logs.registrar_evento(mensaje)
         print("Ese ID no existe. No se puede acceder.")
         input("pulse cualquier tecla para continuar")
         id_her= (input("\n ingrese el id de la herramienta que quiere eliminar: "))
 
     while len(herramientas) <= 1:
+        mensaje = "se intento eliminar a todas las herramientas"
+        logs.registrar_evento(mensaje)
         print("no puede eliminar a todas las herramientas.")
         input("pulse cualquier tecla para continuar")
         id_her= (input("\n ingrese el id de la herramienta que quiere eliminar: "))
@@ -223,6 +245,8 @@ def eliminar (herramientas):
         \nid: {herramientas[id_her]["id"]}""")
     
     while len(herramientas) <= 1:
+        mensaje = "se intento eliminar a todas las herramientas"
+        logs.registrar_evento(mensaje)
         print("no puede eliminar a todas las herramientas.")
         input("pulse cualquier tecla para continuar")
         id_her = (input("\n ingrese el id de la herramienta que quiere eliminar: "))
@@ -252,6 +276,8 @@ def manejo_h (herramientas):
         opcion = int(input("opcion: "))
 
         while opcion < 1 or opcion > 6:
+            mensaje = "se intento poner una opcion equivocada en el menu de gestion de herramientas"
+            logs.registrar_evento(mensaje)
             print("opcion invalida.")
             input("pulse cualquier tecla para continuar")
             menu_herramientas(herramientas)

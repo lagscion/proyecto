@@ -1,4 +1,5 @@
 import json
+import logs
 with open ("vecinos.json", "r") as archivo:
     vecinos = json.load(archivo)
 
@@ -10,6 +11,9 @@ def act_usu(vecinos):
     id_usu = input ("ingrese el id de la persona que quiere actualizar: ")
     
     while id_usu not in vecinos:
+        mensaje = "se intento acceder con un id inexistente en la funcion de actualizar usuario"
+        logs.registrar_evento(mensaje)
+
         print("Ese ID no existe. No se puede acceder.")
         input("pulse cualquier tecla para continuar")
         id_usu = (input("\n ingrese el id de la persona que quiere actualizar: "))
@@ -22,8 +26,9 @@ def act_usu(vecinos):
 5.) admin\n""") 
     opcion = int(input ("opcion: "))
 
-    while opcion < 0 :
-    
+    while opcion < 1 or opcion > 6:
+        mensaje = "se intento poner una opcion equivocada"
+        logs.registrar_evento(mensaje)
         print("\ningrese una opcion valida")
         input("\npresione cualquier tecla para continuar...")
         print("""\nque parametro quisiera cambiar? : 
@@ -49,6 +54,8 @@ def act_usu(vecinos):
     if opcion == 2:
         new_id = input ("ingrese el nuevo id: ")
         while new_id in vecinos["id"]:
+            mensaje = "se intento ingresar un id existente"
+            logs.registrar_evento(mensaje)
             print("Ese ID ya existe. No se puede registrar.")
             input("pulse cualquier letra para continuar")
             id = int(input("\nIngrese el nuevo ID del usuario: "))
@@ -65,8 +72,12 @@ def act_usu(vecinos):
                 new_telefono = int(input("\nIngrese el nuevo ID del usuario: "))
                 break
             except ValueError:
+                mensaje = "se ingreso algo que no era un numero"
+                logs.registrar_evento(mensaje)
                 print("telefono inválido...")
         while new_telefono in vecinos["telefono"]:
+                mensaje = "se intento ingresar un telefono ya existente"
+                logs.registrar_evento(mensaje)
                 print("Ese telefono ya existe. No se puede registrar.")
                 input("pulse cualquier letra para continuar")
                 new_telefono = (input("\nIngrese el nuevo telefono del usuario: "))
@@ -79,6 +90,8 @@ def act_usu(vecinos):
     if opcion == 4:
         new_direccion = input ("ingrese la nueva direccion: ")
         while new_direccion in vecinos["direccion"]:
+                mensaje = "se intento ingresar una direcicion existente"
+                logs.registrar_evento(mensaje)
                 print("Esa direccion ya esta registrada. No se puede registrar.")
                 input("pulse cualquier letra para continuar")
                 new_direccion = (input("\nIngrese la nueva direccion del usuario: "))

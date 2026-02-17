@@ -1,6 +1,7 @@
 import json
 import menus
 import peticiones
+import logs
 with open ("vecinos.json", "r") as archivo:
     vecinos = json.load(archivo)
 
@@ -19,6 +20,8 @@ def  loggin(vecinos, herramientas, ):
     id_usuario = input ("Ingrese su id :")
 
     while id_usuario not  in ids_val:
+        mensaje = "se intento acceder con un id inexistente en el menu de loggin"
+        logs.registrar_evento(mensaje)
         print ("error")
         print("digite un id valido")
         menuID()

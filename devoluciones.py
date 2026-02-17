@@ -1,5 +1,5 @@
 import json
-
+import logs
 def guardar_json(nombre_archivo, datos):
     with open(nombre_archivo, "w", encoding="utf-8") as archivo:
         json.dump(datos, archivo, indent=4, ensure_ascii=False)
@@ -15,6 +15,8 @@ TUS PRESTAMOS:
     prestamos_usuario = vecinos[id_usuario]["prestamo"]
 
     if not prestamos_usuario:
+        mensaje = "se intento realizar una devolucion sin tener prestamos registrados"
+        logs.registrar_evento(mensaje)
         print("No tienes prestamos registrados.")
         return
 
@@ -34,6 +36,8 @@ Estado: {pedido["estado"]}
     devolucion = input("¿Deseas entregar la herramienta ya? Y o N: ").upper()
 
     while devolucion not in ["Y", "N"]:
+        mensaje = "se ingreso una opcion diferente a Y o N en el menu de devoluciones"
+        logs.registrar_evento(mensaje)
         print("Opción inválida.")
         devolucion = input("¿Deseas entregar la herramienta ya? Y o N: ").upper()
 
@@ -58,7 +62,11 @@ Estado: {pedido["estado"]}
                 print("Devolución realizada correctamente.")
 
             else:
+                mensaje = "se intento realizar una devolucion de un prestamo que no estaba aprobado o ya habia sido devuelto"
+                logs.registrar_evento(mensaje)
                 print("El préstamo no está aprobado o ya fue devuelto.")
 
         else:
-            print("ID de préstamo no encontrado.")
+                mensaje = "se intento realizar una devolucion con un id de prestamo inexistente"
+                logs.registrar_evento(mensaje)
+                print("ID de préstamo no encontrado.")
