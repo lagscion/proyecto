@@ -1,9 +1,6 @@
-import json
+
 import logs
-with open ("herramientas.json", "r") as archivo:
-    herramientas = json.load(archivo)
-with open ("vecinos.json", "r") as archivo:
-    vecinos = json.load(archivo)
+
 
 def low_stock (herramientas):
     for a in herramientas:

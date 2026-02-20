@@ -1,7 +1,6 @@
 import json
 import logs
-with open ("herramientas.json", "r") as archivo:
-    herramientas = json.load(archivo)
+
 
 def menu_herramientas(herramientas):
     print ("""\nQUE PLANEA HACER CON LAS HERRAMIENTAS?: 

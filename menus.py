@@ -1,21 +1,14 @@
-import json
+
 import peticiones as peticiones_module
 import agregar_usuarios
 import listar_usuarios
 import buscar_usuario
 import actualizar_usuario  
-import loggin
 import eliminar_usuario
 import gestion_herramientas
 import devoluciones
 import reportes_info
 import logs
-with open("peticiones.json", "r") as arch_pet:
-    peticiones_data = json.load(arch_pet)
-with open ("herramientas.json", "r") as archivo:
-    herramientas = json.load(archivo)
-with open ("vecinos.json", "r") as archivo:
-    vecinos = json.load(archivo)
 
 def print_menu_norm(id_usuario, vecinos, ):
     print(f"""\n *** BIENVENID@ {(vecinos[id_usuario]["nombre"])} ***
@@ -34,7 +27,7 @@ Que desea?
 
 
 
-def menu_norm(id_usuario, herramientas, vecinos, peticiones_data):
+def menu_norm(id_usuario, vecinos, herramientas, peticiones_data):
     print_menu_norm(id_usuario, vecinos)
 
     while True:
@@ -45,20 +38,17 @@ def menu_norm(id_usuario, herramientas, vecinos, peticiones_data):
                 print ("\n",estado)
                 print_menu_norm(id_usuario, vecinos)
             elif opcion ==2:
-                peticiones_module.peticion(id_usuario, herramientas)
+                peticiones_module.peticion(id_usuario, herramientas, vecinos, peticiones_data)
                 print_menu_norm (id_usuario, vecinos)
             elif opcion == 3:
-                with open("vecinos.json", "r") as arch_vec:
-                    vecinos_actualizados = json.load(arch_vec)
-                devoluciones.devoluciones(id_usuario, vecinos_actualizados, herramientas)
+                devoluciones.devoluciones(id_usuario, vecinos, herramientas)
                 print_menu_norm (id_usuario, vecinos)
             elif opcion == 4 :
-                loggin.loggin(vecinos, herramientas)
+                break
             else:
                 print("\ningrese una opcion valida")
                 input("\npresione cualquier tecla para continuar...")
-                menu_norm(id_usuario, herramientas, vecinos, peticiones_data)
-            
+                print_menu_norm(id_usuario, vecinos)
 
         except ValueError:
             mensaje = "se ingreso una opcion diferente a un numero en el menu de usuario normal"
@@ -70,34 +60,29 @@ def menu_norm(id_usuario, herramientas, vecinos, peticiones_data):
 ############################################################################################################################################################################
 
 def menu_admin(id_usuario, vecinos, herramientas, peticiones_data):
-    
+    print (herramientas)
     print_menu_admin(id_usuario, vecinos)
     while True:
         try:
             opcion = int(input("\nopcion : "))
             if opcion == 1:
-                agregar_usuarios.crear_usuario()
-                print_menu_admin(id_usuario)
+                agregar_usuarios.crear_usuario(vecinos)
             elif opcion == 2:
                 listar_usuarios.list_usuarios(vecinos)
-                print_menu_admin(id_usuario)
             elif opcion == 3:
                 buscar_usuario.buscar_usuario(vecinos)
-                print_menu_admin(id_usuario)
             elif opcion == 4:
                 actualizar_usuario.act_usu(vecinos)
-                print_menu_admin(id_usuario)
             elif opcion == 5:
                 eliminar_usuario.eliminar_usuario(vecinos, id_usuario)
-                print_menu_admin(id_usuario)
             elif opcion == 6:
                 gestion_herramientas.manejo_h (herramientas)
             elif opcion == 7:
-                peticiones_module.aprovacion_prestamo(peticiones_data, vecinos)
+                peticiones_module.peticion(id_usuario, herramientas, vecinos, peticiones_data)
             elif opcion == 8:
                 reportes_info.menu(herramientas, vecinos)
             elif opcion == 9:
-                loggin.loggin(vecinos, herramientas)
+                break
             else:
                 mensaje = "se intento ingresar una opcion invalida en el menu de administrador"
                 logs.registrar_evento(mensaje)
@@ -116,8 +101,7 @@ def menu_admin(id_usuario, vecinos, herramientas, peticiones_data):
 
 
 def print_menu_admin(id_usuario, vecinos):
-    with open ("vecinos.json", "r") as archivo:
-        vecinos = json.load(archivo)
+
     print(f"""\n *** BIENVENID@ {(vecinos[id_usuario]["nombre"]).upper()} ***
 
 Que desea?

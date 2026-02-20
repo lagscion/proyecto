@@ -1,1 +1,8 @@
-
+[2026-02-19 23:08:03] se intento ingresar un id existente en el menu de agregar usuario
+[2026-02-19 23:09:11] se intento ingresar un id existente en el menu de agregar usuario
+[2026-02-19 23:09:45] se intento ingresar un id existente en el menu de agregar usuario
+[2026-02-19 23:11:54] se intento ingresar un id existente en el menu de agregar usuario
+[2026-02-19 23:16:21] se intento ingresar un id existente en el menu de agregar usuario
+[2026-02-19 23:18:09] se intento ingresar un id existente en el menu de agregar usuario
+[2026-02-19 23:29:06] se intento ingresar un id existente en el menu de agregar usuario
+[2026-02-19 23:50:38] se intento ingresar un id existente en el menu de agregar usuario

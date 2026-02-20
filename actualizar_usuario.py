@@ -1,11 +1,7 @@
 import json
 import logs
-with open ("vecinos.json", "r") as archivo:
-    vecinos = json.load(archivo)
 
 def act_usu(vecinos):
-    with open ("vecinos.json", "r") as archivo:
-        vecinos = json.load(archivo)
     
     
     id_usu = input ("ingrese el id de la persona que quiere actualizar: ")
@@ -114,7 +110,5 @@ def act_usu(vecinos):
             with open ("vecinos.json", "w") as archivo:
                 json.dump(vecinos, archivo, indent=4)
 
-    with open ("vecinos.json", "r") as archivo:
-        vecinos = json.load(archivo)
 
 

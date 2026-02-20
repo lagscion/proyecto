@@ -1,10 +1,9 @@
-import json
+
 import logs
 
 def buscar_usuario(vecinos):
 
-    with open ("vecinos.json", "r") as archivo:
-        vecinos = json.load(archivo)
+
 
     id_busc = input("ingrese el id del usuario que planea buscar: ")
 

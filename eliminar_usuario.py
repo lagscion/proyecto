@@ -1,7 +1,5 @@
 import json
 import logs
-with open ("vecinos.json", "r") as archivo:
-    vecinos = json.load(archivo)
 
 
 
@@ -64,5 +62,3 @@ def eliminar_usuario(vecinos, id_usuario):
             json.dump(vecinos, archivo, indent=4)
     else:
         return
-    with open ("vecinos.json", "r") as archivo:
-        vecinos = json.load(archivo)

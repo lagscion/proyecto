@@ -3,7 +3,7 @@
         "nombre": "martillo",
         "estado": "activo",
         "categoria": "construccion",
-        "stock": 2,
+        "stock": 1,
         "valor": 1000,
         "id": "1"
     },

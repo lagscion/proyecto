@@ -1,9 +1,7 @@
-import json
+
 import menus
 import peticiones
 import logs
-with open ("vecinos.json", "r") as archivo:
-    vecinos = json.load(archivo)
 
 
 
@@ -27,12 +25,14 @@ def  loggin(vecinos, herramientas, ):
         menuID()
         id_usuario = input("")
     
+    
     id_relacion = {vecinos  [i]["id"] : vecinos[i]["admin"]for i in vecinos}
     permisos = (id_relacion[id_usuario])
+
     if permisos :
-        menus.menu_admin(id_usuario, herramientas, herramientas, peticiones)
+        menus.menu_admin(id_usuario, herramientas, peticiones, vecinos)
     else:
-        menus.menu_norm(id_usuario, herramientas, vecinos, peticiones)
+        menus.menu_norm(id_usuario, vecinos, herramientas, peticiones)
 
     return id_usuario
 

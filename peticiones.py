@@ -1,16 +1,10 @@
 
 import json
 import logs
-with open ("peticiones.json", "r") as arch_pet:
-    peticiones = json.load(arch_pet)
-with open ("herramientas.json", "r") as archivo_herr:
-    herramientas = json.load(archivo_herr)
-with open ("vecinos.json", "r") as archivo_vec:
-    vecinos = json.load(archivo_vec)
 
 
 
-def menu (id_usuario, herramientas):
+def menu (id_usuario, herramientas,vecinos):
     print (f""" *** HOLA, CLARO {(vecinos[id_usuario]["nombre"])} ***
     herramientas: """)
     contador = 1
@@ -26,16 +20,16 @@ def menu (id_usuario, herramientas):
         contador += 1
 
 
-def maxim_id():
+def maxim_id(peticiones):
     if not peticiones:
         return "1"
     return str(max(map(int, peticiones.keys())) + 1)
 
 
-def peticion (id_usuario, herramientas):
+def peticion(id_usuario, herramientas, vecinos, peticiones):
     while True :
 
-        menu(id_usuario, herramientas)
+        menu(id_usuario, herramientas, vecinos)
         opcion = (input("ID de la herramienta a presar: "))
 
         while int(opcion) < 1 or len(herramientas) < int(opcion) :
@@ -64,6 +58,9 @@ def peticion (id_usuario, herramientas):
         while True:
             try:  
                 fecha = int(input("ingrese el numero aprox dias en los que devolveria la herramienta: "))
+                while fecha < 1:
+                    print ("ingrese una fecha valida...")
+                    fecha = int(input("ingrese el numero aprox dias en los que devolveria la herramienta: "))
                 break
             except ValueError:
                 mensaje = "se ingreso un valor diferente a un numero en el menu de solicitud de herramienta"
@@ -71,36 +68,27 @@ def peticion (id_usuario, herramientas):
                 print("ingrese un valor valido")
             
 
-        peticiones[maxim_id()] = {
-            "id del pedido" : str(maxim_id()),
+        nuevo_id = maxim_id(peticiones)
+
+        peticiones[nuevo_id] = {
+            "id del pedido" : nuevo_id,
             "quien" : id_usuario,
             "herramienta" : herramienta,
             "cantidad" : cantidad,
             "fecha" : fecha,
             "estado" : ""
-
         }
 
         with open("peticiones.json", "w") as archivo_pet:
             json.dump(peticiones, archivo_pet, indent=4)
-        print("\nsu pedido se realizo con exito")
 
-        with open ("herramientas.json", "r") as archivo_herr:
-            herramientas = json.load(archivo_herr)
-
-        mensaje = f"se realizo una solicitud de herramienta{herramienta} por parte del usuario {vecinos[id_usuario]['nombre']} con id {id_usuario}"
+        mensaje = f"se realizo una solicitud de herramienta {herramienta} por parte del usuario {vecinos[id_usuario]['nombre']} con id {id_usuario}"
         logs.registrar_evento(mensaje)
 
         break
-
 #APROVACIONES=================================================================================================================================================
 def aprovar(peticiones, vecinos, herramientas):
-    with open ("peticiones.json", "r") as arch_pet:
-        peticiones = json.load(arch_pet)
-    with open ("herramientas.json", "r") as archivo_herr:
-        herramientas = json.load(archivo_herr)
-    with open ("vecinos.json", "r") as archivo_vec:
-        vecinos = json.load(archivo_vec)
+
 
     id_apro = input ("ingrese el ID del pedido que quisiera  aprovar: ")
     while id_apro not in peticiones:
@@ -151,11 +139,6 @@ def aprovar(peticiones, vecinos, herramientas):
     with open("peticiones.json", "w") as arch_pet:
         json.dump(peticiones, arch_pet, indent=4)
 
-    with open("vecinos.json", "w") as arch_vec:
-        json.dump(vecinos, arch_vec, indent=4)
-
-    with open("herramientas.json", "w") as arch_her:
-        json.dump(herramientas, arch_her, indent=4)
 
     print("Préstamo aprobado correctamente")
 
@@ -201,10 +184,8 @@ estado: {peticiones[id_ped]["estado"]}""")
 
 # DESARROLLADOR======================================================================================================================================
 
-def aprovacion_prestamo(peticiones, vecinos):
+def aprovacion_prestamo(peticiones, vecinos, herramientas):
 
-    with open("peticiones.json", "r") as arch_pet:
-        peticiones = json.load(arch_pet)
 
     if len(peticiones) == 0:
         print("\nNo hay préstamos pendientes.")
@@ -223,9 +204,11 @@ def aprovacion_prestamo(peticiones, vecinos):
     ======================================================================""")
     
     print("""QUE DESEARIA HACER
-                   
+
 1.) aprobar prestamo
+
 2.) rechazar prestamo
+
 3.) salir """)
 
     opcion = int(input("\nopcion: "))
