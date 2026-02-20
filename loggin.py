@@ -10,7 +10,7 @@ def menuID():
 
 """)
 
-def  loggin(vecinos, herramientas, ):
+def  loggin(vecinos, herramientas ):
 
     ids_val = [vecinos[i]["id"] for i in vecinos]
 
@@ -29,8 +29,8 @@ def  loggin(vecinos, herramientas, ):
     id_relacion = {vecinos  [i]["id"] : vecinos[i]["admin"]for i in vecinos}
     permisos = (id_relacion[id_usuario])
 
-    if permisos :
-        menus.menu_admin(id_usuario, herramientas, peticiones, vecinos)
+    if permisos:
+        menus.menu_admin(id_usuario, vecinos, herramientas, peticiones)
     else:
         menus.menu_norm(id_usuario, vecinos, herramientas, peticiones)
 

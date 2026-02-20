@@ -6,3 +6,6 @@
 [2026-02-19 23:18:09] se intento ingresar un id existente en el menu de agregar usuario
 [2026-02-19 23:29:06] se intento ingresar un id existente en el menu de agregar usuario
 [2026-02-19 23:50:38] se intento ingresar un id existente en el menu de agregar usuario
+[2026-02-20 00:14:08] se ingreso una opcion diferente a un numero en el menu de administrador
+[2026-02-20 00:14:25] se intento ingresar un id existente en el menu de agregar usuario
+[2026-02-20 08:55:51] se intento realizar una devolucion sin tener prestamos registrados
