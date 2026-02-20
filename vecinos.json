@@ -5,7 +5,16 @@
         "telefono": "12345",
         "direccion": "carr 1",
         "admin": false,
-        "prestamo": {}
+        "prestamo": {
+            "1": {
+                "id del pedido": "1",
+                "quien": "1",
+                "herramienta": "destornillador",
+                "cantidad": 1,
+                "fecha": 12,
+                "estado": "entregado"
+            }
+        }
     },
     "2": {
         "nombre": "elsa pato",

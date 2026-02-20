@@ -28,10 +28,11 @@ Que desea?
 
 
 def menu_norm(id_usuario, vecinos, herramientas, peticiones_data):
-    print_menu_norm(id_usuario, vecinos)
 
     while True:
         try:
+            print_menu_norm(id_usuario, vecinos)
+            
             opcion = int(input("\nopcion : "))
             if opcion == 1:
                 estado = {herramientas[i]["nombre"]:herramientas[i]["estado"] for i in herramientas}
@@ -60,10 +61,9 @@ def menu_norm(id_usuario, vecinos, herramientas, peticiones_data):
 ############################################################################################################################################################################
 
 def menu_admin(id_usuario, vecinos, herramientas, peticiones_data):
-    print (herramientas)
-    print_menu_admin(id_usuario, vecinos)
     while True:
         try:
+            print_menu_admin(id_usuario, vecinos)
             opcion = int(input("\nopcion : "))
             if opcion == 1:
                 agregar_usuarios.crear_usuario(vecinos)
@@ -78,7 +78,7 @@ def menu_admin(id_usuario, vecinos, herramientas, peticiones_data):
             elif opcion == 6:
                 gestion_herramientas.manejo_h (herramientas)
             elif opcion == 7:
-                peticiones_module.peticion(id_usuario, herramientas, vecinos, peticiones_data)
+                peticiones_module.aprovacion_prestamo(peticiones_data, vecinos, herramientas)
             elif opcion == 8:
                 reportes_info.menu(herramientas, vecinos)
             elif opcion == 9:

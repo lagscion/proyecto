@@ -1,5 +1,5 @@
 import logs
-
+import json
 def crear_usuario(vecinos):
     nombre = input("\ningrese el nombre del nuevo usuario: ").upper()
     while nombre in [vecinos[i]["nombre"].upper() for i in vecinos]:
@@ -58,12 +58,16 @@ def crear_usuario(vecinos):
     admin = True if admin == "Y" else False
 
     vecinos[id] = {
-        "nombre": nombre,
-        "telefono": telefono,
+        "id": id,              
+        "nombre": nombre,      
+        "telefono": telefono,  
         "direccion": direccion,
-        "admin": admin,
-        "prestamo": {}
+        "admin": admin,        
+        "prestamo": {}         
     }
 
-    print("\n*** USUARIO INGRESADO CORRECTAMENTE ***")
 
+    with open("vecinos.json", "w", encoding="utf-8") as archivo:
+        json.dump(vecinos, archivo, indent=4, ensure_ascii=False)
+
+    print("\n*** USUARIO INGRESADO CORRECTAMENTE ***")

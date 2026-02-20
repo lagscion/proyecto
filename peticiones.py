@@ -139,6 +139,8 @@ def aprovar(peticiones, vecinos, herramientas):
     with open("peticiones.json", "w") as arch_pet:
         json.dump(peticiones, arch_pet, indent=4)
 
+    with open("vecinos.json", "w") as arch_vecinos:
+        json.dump(vecinos, arch_vecinos, indent=4)
 
     print("Préstamo aprobado correctamente")
 

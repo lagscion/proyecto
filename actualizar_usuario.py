@@ -47,19 +47,26 @@ def act_usu(vecinos):
             json.dump(vecinos, archivo, indent=4)
 
 
-    if opcion == 2:
-        new_id = input ("ingrese el nuevo id: ")
-        while new_id in vecinos["id"]:
-            mensaje = "se intento ingresar un id existente"
-            logs.registrar_evento(mensaje)
-            print("Ese ID ya existe. No se puede registrar.")
-            input("pulse cualquier letra para continuar")
-            id = int(input("\nIngrese el nuevo ID del usuario: "))
-            id = str(id)  
-        vecinos[id_usu]["id"] = new_id
+    if opcion == 2:  
+        new_id = input("Ingrese el nuevo ID para este usuario: ")
 
-        with open ("vecinos.json", "w") as archivo:
-            json.dump(vecinos, archivo, indent=4)
+        
+        while new_id in vecinos:
+            print("Ese ID ya existe. Intente otro.")
+            new_id = input("Ingrese el nuevo ID para este usuario: ")
+
+        
+        usuario = vecinos[id_usu]
+        usuario["id"] = new_id
+
+        
+        vecinos[new_id] = vecinos.pop(id_usu)
+
+        
+        with open("vecinos.json", "w", encoding="utf-8") as archivo:
+            json.dump(vecinos, archivo, indent=4, ensure_ascii=False)
+
+        print(f"ID del usuario actualizado correctamente a {new_id}")
 
 
     if opcion == 3:
@@ -71,7 +78,7 @@ def act_usu(vecinos):
                 mensaje = "se ingreso algo que no era un numero"
                 logs.registrar_evento(mensaje)
                 print("telefono inválido...")
-        while new_telefono in vecinos["telefono"]:
+        while any(vecinos[i]["telefono"] == new_telefono for i in vecinos):
                 mensaje = "se intento ingresar un telefono ya existente"
                 logs.registrar_evento(mensaje)
                 print("Ese telefono ya existe. No se puede registrar.")
@@ -85,7 +92,7 @@ def act_usu(vecinos):
 
     if opcion == 4:
         new_direccion = input ("ingrese la nueva direccion: ")
-        while new_direccion in vecinos["direccion"]:
+        while any(vecinos[i]["direccion"] == new_direccion for i in vecinos):
                 mensaje = "se intento ingresar una direcicion existente"
                 logs.registrar_evento(mensaje)
                 print("Esa direccion ya esta registrada. No se puede registrar.")

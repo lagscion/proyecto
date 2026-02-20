@@ -11,16 +11,8 @@
         "nombre": "destornillador",
         "estado": "activo",
         "categoria": "construccion",
-        "stock": 1,
+        "stock": 2,
         "valor": 2000,
         "id": "2"
-    },
-    "3": {
-        "nombre": "maza",
-        "estado": "activo",
-        "categoria": "construccion",
-        "stock": 3,
-        "valor": 1000,
-        "id": "3"
     }
 }

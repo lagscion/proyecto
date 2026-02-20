@@ -161,7 +161,10 @@ def actualizar_her(herramientas):
         opcion = int(input ("\nopcion: "))
 
     if opcion == 1:
-        nombre_her = input ("ingrese el nuevo nombre: ")
+        nombre_her = input ("ingrese el nuevo nombre: ").strip()
+        while any(herramientas[i]["nombre"] == nombre_her for i in herramientas):
+            print  ("el nombre ya pertenece a otra herramienta, vuelvalo a intentar...")
+            nombre_her = input ("ingrese el nuevo nombre: ")
         herramientas[id_her]["nombre"] = nombre_her
 
         with open ("herramientas.json", "w") as archivo:

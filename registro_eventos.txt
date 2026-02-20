@@ -9,3 +9,11 @@
 [2026-02-20 00:14:08] se ingreso una opcion diferente a un numero en el menu de administrador
 [2026-02-20 00:14:25] se intento ingresar un id existente en el menu de agregar usuario
 [2026-02-20 08:55:51] se intento realizar una devolucion sin tener prestamos registrados
+[2026-02-20 09:05:06] se realizo una solicitud de herramienta martillo por parte del usuario juan david osorio lora con id 1
+[2026-02-20 09:24:54] se intento acceder con un id inexistente en el menu de loggin
+[2026-02-20 09:34:04] se intento acceder con un id inexistente en la funcion de actualizar usuario
+[2026-02-20 09:47:59] se intento crear una herramienta existente
+[2026-02-20 09:51:50] se intento poner una opcion equivocada en el menu de actualizar herramienta
+[2026-02-20 09:58:19] se realizo una solicitud de herramienta destornillador por parte del usuario juan david osorio lora con id 1
+[2026-02-20 09:59:53] se ingreso una opcion diferente a un numero en el menu de administrador
+[2026-02-20 10:04:01] se intento revisar si habia prestamos activos sin haber prestamos activos registrados en el menu de prestamos activos
