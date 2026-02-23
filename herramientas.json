@@ -3,16 +3,28 @@
         "nombre": "martillo",
         "estado": "activo",
         "categoria": "construccion",
-        "stock": 1,
         "valor": 1000,
         "id": "1"
     },
     "2": {
-        "nombre": "destornillador",
+        "nombre": "soplete",
         "estado": "activo",
         "categoria": "construccion",
-        "stock": 2,
         "valor": 2000,
         "id": "2"
+    },
+    "3": {
+        "nombre": "taladro",
+        "estado": "activo",
+        "categoria": "construccion",
+        "valor": 2000,
+        "id": "3"
+    },
+    "4": {
+        "nombre": "cierra",
+        "estado": "activo",
+        "categoria": "construccion",
+        "valor": 2000,
+        "id": "4"
     }
 }
